@@ -53,7 +53,7 @@ app.post("/signin",async (req,res)=>{
     }
 })
 //tasks-authenticated endpoints
-app.get("/",auth,(req,res)=>{
+app.get("/tasks",auth,(req,res)=>{
 
 })
 app.post("/task/add",auth,(req,res)=>{
