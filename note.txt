@@ -1,0 +1,27 @@
+leftmost side-task,buckets,inspirations,mentor,plan
+tasks-segregation based on 
+1.daily,
+weekly,monthly,yearl (no ticking)(/custom)-while calender opened
+
+main problem-daily is today task and task wrto weekly,monthly,yearly
+
+plan-like exceli draw
+ticking - as leetcode accepted to green text and goes down
+buckets-
+inspirations-hall of fame 3 -(selection)according to field -rajamouli,messi,virat -black/grey
+(like githunb commits 1 years summary x blues,ygreens, z yellows)
+thoughts-aristotle,adishankara,swami photos(choose urs(grey/black)) ~
+mode-dark and light mode
+bars-for such tasks when clicked(daily-my logic(segments according to priority(red,yellow,green(3sections) whbackground) and))
+
+3 sections-tasks,buckets,thoughts
+
+profile-
+friends-
+bottom left most- fuel of the day 
+task-timer-yes or no-then grind more(setting timer)
+    -priority
+
+calender options 
+
+learnings-auth,zod,react
