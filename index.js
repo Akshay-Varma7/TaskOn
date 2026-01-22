@@ -2,14 +2,15 @@ const express = require("express");
 const jwt = require("jsonwebtoken");
 const mongoose = require("mongoose");
 const {UserModel : User, TaskModel : Task, TaskModel} = require("./models/models.js");//as we deconstruct using keys
-const {auth ,JWT_SECRET} = require("./auth/auth.js");
+const {auth} = require("./auth/auth.js");
+require("dotenv").config();//can be loaded once(server file) no need to load in any other
 const app = express();
 
 app.use(express.json());//to pass json body
 
-async function main(){//mongodb://127.0.0.1:27017/TaskOn -for db running on my machine-localhost:mongoDB port/db
+async function main(){//mongodb://local ip:27017(usual mongodb port)/TaskOn -for db running on my machine
     try{
-        await mongoose.connect("mongodb+srv://username:password@cluster0.ettblac.mongodb.net/TaskOn");//somewhere in cloud
+        await mongoose.connect(DB_URL);//somewhere in cloud
         //if not pthere it will try to connect to local mongogdb database (which we dont have/wont use right now)
     }catch(err){
         console.log(err.message);
@@ -23,6 +24,13 @@ app.post("/signup",async (req,res)=>{//async - due to req to db
     //to db
     await User.create({//sometimes this insertion may fail due to constraints defined for fields in schema
         email : email,
+        //hashing is a one way process-pswd to hash but not hash to pswd //not encryption(2 way process)
+        //for that we have hashing algorithms
+
+        //DOWNSIDE-what if 2 people have same pswd-same hash
+        //A.2 solved by salting pswd(random string addn)-then hashing
+
+        //store their : hashed pswd + salt
         password : password,
         name : name   
     })
@@ -34,6 +42,8 @@ app.post("/signup",async (req,res)=>{//async - due to req to db
 
 app.post("/signin",async (req,res)=>{
     const {email,password} = req.body;
+    //A.2server takes the pswd+salt(bring from db)- then hash -&check
+
     //search in db
     const user = User.find({//returns sucn document(object)-if many such an array of objects
         email : email,
@@ -78,7 +88,7 @@ app.delete("/task/delete",auth,(req,res)=>{
     
 })
 
-app.listen(8080,()=>{
-    console.log(`listening to port : 8080`);
+app.listen(PORT,()=>{
+    console.log(`listening to port : ${PORT}`);
 });
 //in js-obj can have-classes,objects,arrays,functions,all as properties
