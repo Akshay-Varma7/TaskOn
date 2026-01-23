@@ -10,6 +10,7 @@ const UserSchema = Schema({//or name : String
     },
     email : {
         type : String,
+        unique : true,
         required : true,
     },
     password : {
@@ -21,7 +22,7 @@ const UserSchema = Schema({//or name : String
 const TaskSchema = Schema({
     task : String,
     done : Boolean,
-    userId : ObjectId//not a string
+    userId : ObjectId//not a string-not unq as  user can post many tasks
 })
 //creating models
 const UserModel = mongoose.model('User',UserSchema);//collection(in which),schema(to be used)-can be captured using any variable name

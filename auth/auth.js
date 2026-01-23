@@ -1,5 +1,7 @@
 const jwt = require("jsonwebtoken");
 
+const JWT_SECRET = process.env.JWT_SECRET;
+
 function auth(req,res,next){
     const token = req.headers.token;
     // localStorage.getItem("token");
@@ -14,4 +16,4 @@ function auth(req,res,next){
     }
 }
 
-module.exports = {auth,JWT_SECRET};//not a function
+module.exports = {auth};//not a function
